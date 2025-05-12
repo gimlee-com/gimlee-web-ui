@@ -1,0 +1,16 @@
+.container {
+  position: absolute;
+  height: 50000px;
+  overflow: hidden;
+  top: -1000px;
+  left: -1000px;
+  visibility: hidden;
+
+  &.debug {
+    top: 100px;
+    opacity: 0.5;
+    left: 15px!important; // insert a number that will move the container exactly to the place where real chat displays on your screen
+    visibility: visible;
+    background: orange;
+  }
+}

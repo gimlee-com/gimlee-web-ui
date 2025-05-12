@@ -1,0 +1,6 @@
+@import '~gimlee-ui-styles/typography';
+
+.app {
+  @include body-font();
+  flex: 1;
+}

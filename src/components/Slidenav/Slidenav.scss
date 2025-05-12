@@ -1,0 +1,10 @@
+@import '../../styles/animations';
+
+.slidenav {
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.15s ease-in;
+  &:hover {
+    opacity: 0.8;
+  }
+}

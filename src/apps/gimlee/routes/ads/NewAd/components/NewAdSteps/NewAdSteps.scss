@@ -1,0 +1,71 @@
+@import "~gimlee-ui-styles/variables";
+
+.step {
+  display: inline-block;
+}
+
+.step-dots-container {
+  margin-top: -8px;
+}
+
+.step-dot {
+  background: $background-muted-background;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-top: 8px;
+  display: inline-block;
+  transition: all $transition-duration;
+  box-sizing: border-box;
+}
+
+.active {
+  >.step-dot {
+    padding: 12px;
+    width: 32px;
+    height: 32px;
+    margin-top: 0;
+    box-shadow: $global-small-box-shadow;
+    background: none;
+    border: solid 2px $background-muted-background;
+  }
+
+  &.valid {
+    >.step-dot {
+      border: solid 4px $background-primary-background;
+    }
+  }
+}
+
+.skipped {
+  >.step-dot {
+    background: $background-secondary-background;
+  }
+}
+
+.invalid {
+  >.step-dot {
+    background: $background-secondary-background;
+  }
+}
+
+.valid {
+  &:not(.active)>.step-dot {
+    background: $background-primary-background;
+  }
+}
+
+.current-step-label {
+  color: $global-muted-color;
+  position: absolute;
+  align-self: center;
+  top: 32px;
+  background: $base-body-background;
+  padding: 0 12px;
+}
+
+:global(.uk-sticky.uk-active) :local{
+  .current-step-label {
+    box-shadow: $global-small-box-shadow;
+  }
+}

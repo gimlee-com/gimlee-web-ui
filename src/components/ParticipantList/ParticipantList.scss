@@ -1,0 +1,13 @@
+.list {
+  flex: 1;
+
+  &.inline {
+    display: flex;
+    overflow-x: auto;
+    margin: 0;
+
+    > li {
+      display: inline-block;
+    }
+  }
+}

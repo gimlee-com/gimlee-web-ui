@@ -1,0 +1,17 @@
+export default {
+  FADE: 'uk-transition-fade',
+  SCALE_UP: 'uk-transition-scale-up',
+  SCALE_DOWN: 'uk-transition-scale-down',
+  SLIDE_TOP: 'uk-transition-slide-top',
+  SLIDE_BOTTOM: 'uk-transition-slide-bottom',
+  SLIDE_LEFT: 'uk-transition-slide-left',
+  SLIDE_RIGHT: 'uk-transition-slide-right',
+  SLIDE_TOP_SMALL: 'uk-transition-slide-top-small',
+  SLIDE_BOTTOM_SMALL: 'uk-transition-slide-bottom-small',
+  SLIDE_LEFT_SMALL: 'uk-transition-slide-left-small',
+  SLIDE_RIGHT_SMALL: 'uk-transition-slide-right-small',
+  SLIDE_TOP_MEDIUM: 'uk-transition-slide-top-medium',
+  SLIDE_BOTTOM_MEDIUM: 'uk-transition-slide-bottom-medium',
+  SLIDE_LEFT_MEDIUM: 'uk-transition-slide-left-medium',
+  SLIDE_RIGHT_MEDIUM: 'uk-transition-slide-right-medium',
+};

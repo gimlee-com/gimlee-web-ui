@@ -1,0 +1,9 @@
+.progress {
+  position: fixed;
+  border-radius: 0;
+  z-index: 1000;
+}
+
+.progress[value]::-webkit-progress-bar {
+  border-radius: 0;
+}

@@ -1,0 +1,54 @@
+@import "./uikit";
+@import "~flatpickr/dist/flatpickr.css";
+@import "~ol/ol.css";
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+body {
+  overflow-y: auto;
+  overflow-y: overlay;
+}
+
+.uk-flex {
+
+  > * {
+    /**
+      https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
+
+      Since at least 2017, it appears that Chrome is either
+      (1) reverting back to the min-width: 0 / min-height: 0 defaults, or
+      (2) automatically applying the 0 defaults in certain situations based on a mystery algorithm.
+      (This could be what they call an intervention.)
+
+      As a result, many people are seeing their layout (especially desired scrollbars) work as expected in Chrome,
+      but not in Firefox / Edge. This issue is covered in more detail here:
+      https://stackoverflow.com/questions/49575838/flex-shrink-discrepancy-between-firefox-and-chrome
+
+      TL;DR; CSS spec fucks with flex layout; setting min-height: 0 should help maintaining consistency
+      across firefox' and chrome's flex layout behavior.
+     */
+    min-height: 0;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .2);
+  border-radius: 0;
+}
+
+:focus {
+  outline: solid 2px $global-primary-background;
+}

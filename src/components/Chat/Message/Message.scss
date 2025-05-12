@@ -1,0 +1,33 @@
+@import "~gimlee-ui-styles/variables";
+
+.message {
+  padding-right: $padding-small-padding;
+  padding-bottom: 10px;
+  opacity: 1;
+
+  p {
+    opacity: 1;
+  }
+}
+
+.avatar-container {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+}
+
+.timestamp-container {
+  display: inline-flex;
+  height: 32px;
+  flex: 0 0 32px;
+}
+
+.timestamp {
+  display: inline-block;
+  line-height: 32px;
+  text-align: center;;
+  flex: 0 0 32px;
+  height: 32px;
+  font-size: calc(#{$global-small-font-size} * 0.8);
+  background: $global-secondary-background;
+}

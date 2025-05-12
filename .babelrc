@@ -1,0 +1,15 @@
+{
+  "presets": ["es2015", "react"],
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "gimlee-ui-components": "./src/components",
+        "gimlee-ui-model": "./src/model",
+        "gimlee-ui-service": "./src/service",
+        "gimlee-ui-store": "./src/store",
+        "gimlee-ui-util": "./src/util"
+      }
+    }]
+  ]
+}

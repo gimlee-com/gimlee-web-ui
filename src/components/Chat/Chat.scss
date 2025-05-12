@@ -1,0 +1,28 @@
+.chat-card {
+  flex: 1 1 auto;
+}
+
+.chat-card-body {
+  flex: 1 1 auto;
+}
+
+.chat-messages-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.chat-card-footer {
+  flex: 0 0 auto;
+}
+
+.message-text-area {
+  flex: 1;
+}
+
+.chat-footer-controls {
+  flex: 1 1 auto;
+}
+
+.date-heading {
+  margin-top: -14px;
+}

@@ -1,0 +1,16 @@
+@import '~gimlee-ui-styles/variables';
+
+.heading {
+  line-height: 18px;
+  font-weight: 100;
+
+  > span {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.label {
+  background: none;
+  color: $global-color;
+}

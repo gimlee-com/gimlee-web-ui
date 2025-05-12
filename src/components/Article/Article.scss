@@ -1,0 +1,5 @@
+@import '~gimlee-ui-styles/typography';
+
+.title {
+  @include heading-font();
+}

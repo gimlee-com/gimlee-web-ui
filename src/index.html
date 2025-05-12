@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Marck+Script&amp;subset=latin-ext" rel="stylesheet">
+  <!-- Credit to the Swiss Geoportal dev team for this redirect script -->
+  <script>
+    (function() {
+      var w = window, l = w.location, n = w.navigator, p = 'desktop', m = l.search.match(/(?:mobile=(true|false))/);
+      if (!l.origin) {
+        l.origin=l.protocol + "//" +l.hostname; // IE fix
+      }
+      m = (m) ? m[1] : m; // avoid loops
+      if (!(p == 'desktop' && m == 'false') && !(p == 'mobile' && m == 'true')) {
+        var href, onMobile = (('ontouchstart' in w) || n.maxTouchPoints > 1 || n.msMaxTouchPoints > 1) && (screen.width <= 768 || screen.height <= 768);
+        if (m == 'false' || (!onMobile && p == 'mobile')) {
+          href = l.origin + l.pathname.replace(/\/(|(mobile|embed)\.html)$/, '/index.html') + l.search;
+        } else if (m == 'true' || (onMobile && p == 'desktop')) {
+          href = l.origin + l.pathname.replace(/\/(|(index|embed)\.html)$/, '/mobile.html') + l.search;
+        }
+        if (href && href != l.href) {
+          l.href = href;
+        }
+      }
+    })();
+  </script>
+</head>
+
+<body class="uk-flex uk-flex-column">
+<div id="app" class="uk-flex uk-flex-column uk-flex-1"></div>
+</body>
+
+</html>

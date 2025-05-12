@@ -1,0 +1,12 @@
+@import "~gimlee-ui-styles/variables";
+
+.suggestion-container {
+  padding: 0 $padding-small-padding;
+
+  &:first-child {
+    padding-top: $list-divider-margin-top;
+  }
+  &:last-child {
+    padding-bottom: $list-divider-margin-top;
+  }
+}

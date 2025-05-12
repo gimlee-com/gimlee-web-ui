@@ -1,0 +1,13 @@
+.message-content-text {
+  word-break: break-word;
+  flex: 1;
+  min-height: 1.5em;
+
+  blockquote {
+    font-size: inherit;
+  }
+
+  * {
+    margin: 0;
+  }
+}

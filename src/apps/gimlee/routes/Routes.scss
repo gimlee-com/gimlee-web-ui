@@ -1,0 +1,9 @@
+.route-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1;
+
+  > * {
+    min-height: 0;
+  }
+}

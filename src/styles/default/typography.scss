@@ -1,0 +1,9 @@
+@import './variables';
+
+@mixin body-font() {
+  font-family: $font-primary;
+}
+
+@mixin heading-font() {
+  font-family: $font-secondary;
+}

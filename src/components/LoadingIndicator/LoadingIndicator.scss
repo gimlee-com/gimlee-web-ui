@@ -1,0 +1,110 @@
+@import '~gimlee-ui-styles/variables';
+
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes lds-spinner {
+  0% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+.lds-spinner {
+  position: relative;
+  width: $spinner-size !important;
+  height: $spinner-size !important;
+  margin: 6px 24px;
+  transform: scale(0.5);
+
+  div {
+    position: absolute;
+    animation: lds-spinner linear 0.8s infinite;
+    background: $base-body-color;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    transform-origin: 0px $spinner-size;
+  }
+
+  div:nth-child(1) {
+    transform: rotate(0deg);
+    animation-delay: -0.72s;
+  }
+  div:nth-child(2) {
+    transform: rotate(36deg);
+    animation-delay: -0.64s;
+  }
+  div:nth-child(3) {
+    transform: rotate(72deg);
+    animation-delay: -0.56s;
+  }
+  div:nth-child(4) {
+    transform: rotate(108deg);
+    animation-delay: -0.48s;
+  }
+  div:nth-child(5) {
+    transform: rotate(144deg);
+    animation-delay: -0.4s;
+  }
+  div:nth-child(6) {
+    transform: rotate(180deg);
+    animation-delay: -0.32s;
+  }
+  div:nth-child(7) {
+    transform: rotate(216deg);
+    animation-delay: -0.24s;
+  }
+  div:nth-child(8) {
+    transform: rotate(252deg);
+    animation-delay: -0.16s;
+  }
+  div:nth-child(9) {
+    transform: rotate(288deg);
+    animation-delay: -0.08s;
+  }
+  div:nth-child(10) {
+    transform: rotate(324deg);
+    animation-delay: 0s;
+  }
+
+  &.primary {
+    div {
+      background: $background-primary-background;
+      width: 3px;
+      height: 3px;
+    }
+  }
+
+  &.light {
+    div {
+      background: #FFF;
+    }
+  }
+
+  &.input, &.small {
+    width: 16px !important;
+    height: 16px !important;
+
+    div {
+      transform-origin: 0px 16px;
+    }
+  }
+
+  &.small {
+    margin: 0px 13px 10px 23px;
+  }
+
+  &.input {
+    margin: 3px 12px;
+    position: absolute;
+  }
+}

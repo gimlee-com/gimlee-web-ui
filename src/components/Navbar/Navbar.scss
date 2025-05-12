@@ -1,0 +1,13 @@
+@import '~gimlee-ui-styles/typography';
+
+.logo {
+  @include heading-font();
+}
+
+.action-item {
+  cursor: pointer;
+  transition: color $transition-duration ease-in;
+  &:hover {
+    color: $text-primary-color;
+  }
+}

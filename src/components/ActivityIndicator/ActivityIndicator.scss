@@ -1,0 +1,21 @@
+@import '~gimlee-ui-styles/variables';
+
+.activity-indicator {
+  display:inline-flex;
+}
+
+.top {
+  align-items: flex-start;
+}
+
+.center {
+  align-items: center;
+}
+
+.inactive {
+  color: $text-muted-color;
+}
+
+.active {
+  color: $text-success-color;
+}

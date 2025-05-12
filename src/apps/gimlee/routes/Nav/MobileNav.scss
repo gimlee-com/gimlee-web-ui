@@ -1,0 +1,19 @@
+@import '~gimlee-ui-styles/variables';
+
+.nav {
+  height: 60px;
+
+  :global .uk-navbar-item {
+    height: 60px;
+  }
+
+  :global .uk-logo {
+    font-size: 1.2em;
+  }
+}
+
+.primary {
+  background-color: $global-primary-background;
+  color: $inverse-global-color;
+  box-shadow: $global-large-box-shadow;
+}

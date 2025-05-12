@@ -1,0 +1,31 @@
+@import "~gimlee-ui-styles/variables";
+
+.message-card {
+
+  padding: 5px 8px;
+
+  &:after {
+    width: 10px;
+    height: 45px;
+    position: absolute;
+    bottom: 0;
+    background: $card-default-background;
+  }
+}
+
+.own {
+  &:after {
+    display: inherit;
+    background: $background-primary-background;
+    right: -4px;
+    clip-path: polygon(0 70%, 0% 100%, 100% 100%);
+  }
+}
+
+.others {
+  &:after {
+    display: inherit;
+    left: -4px;
+    clip-path: polygon(100% 70%, 0% 100%, 100% 100%);
+  }
+}

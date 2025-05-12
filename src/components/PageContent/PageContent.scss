@@ -1,0 +1,13 @@
+@import '~gimlee-ui-styles/variables';
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1;
+}
+
+.loading-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,21 @@
+///////////////////////////////////////////
+// UIkit variable overrides below
+///////////////////////////////////////////
+
+// COLOR SCHEME
+$global-background: #FFF;
+$global-primary-background: rgba(16, 146, 255, 0.96);
+$global-muted-background: darken($global-background, 10%);
+
+$background-primary-background: $global-primary-background;
+$background-muted-background: $global-muted-background;
+$background-default-background: $global-background;
+
+///////////////////////////////////////////
+// UIkit variable overrides end here
+///////////////////////////////////////////
+
+@import "~uikit/src/scss/variables-theme";
+
+$font-primary: $global-font-family;
+$font-secondary: $global-font-family;

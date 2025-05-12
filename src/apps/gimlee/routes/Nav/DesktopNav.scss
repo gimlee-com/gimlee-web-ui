@@ -1,0 +1,46 @@
+@import '~gimlee-ui-styles/variables';
+
+:global .uk-sticky-placeholder {
+  min-height: 60px;
+}
+
+:global .uk-sticky-below {
+  :local .nav {
+    background: $base-body-background;
+    height: 60px;
+    box-shadow: $global-medium-box-shadow;
+  }
+
+  :local .nav :global .uk-navbar-item {
+    min-height: 60px;
+    height: 60px;
+    color: $global-color;
+  }
+}
+
+:local .nav {
+  z-index: 1;
+  width: 100%;
+  height: 80px;
+  transition: height $transition-duration ease-out, background-color $transition-duration ease-out;
+
+  :global .uk-navbar-item {
+    height: 80px;
+    transition: height $transition-duration ease-out;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+
+}
+
+.landing {
+  :global .uk-navbar-item {
+    color: #FFF;
+  }
+}
+
+.login-dropdown {
+  width: 280px;
+}

@@ -1,0 +1,41 @@
+@import "~gimlee-ui-styles/variables";
+
+.page-content {
+  margin-top: -80px;
+}
+
+.section-heading {
+  background: url('/api/media?p=/0196bf14-8c97-7fd0-b565-657d8754eb5c.jpg') no-repeat center;
+  background-size: cover;
+
+  h1 {
+    font-weight: 100;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .heading-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.35) 14%, rgba(255,255,255,0) 100%);
+  }
+
+  .heading-container {
+    align-items: center;
+  }
+}
+
+.section-content {
+  margin-top: 100px;
+  padding: 0;
+}
+
+.card-button {
+  border: none;
+
+  &:hover {
+    border: none;
+  }
+}
+
+.thumbnail {
+  width: 100%;
+}

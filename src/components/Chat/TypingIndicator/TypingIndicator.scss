@@ -1,0 +1,41 @@
+@import "~gimlee-ui-styles/variables";
+
+@keyframes dot-anim {
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -3px);
+  }
+  0% {
+    transform: translate(0, 0);
+  }
+}
+
+.wrapper {
+  height: 2em;
+  margin-left: $margin-small-margin;
+}
+
+.dots-container {
+  width: 32px;
+}
+
+.dot {
+  margin-left: 1px;
+  margin-right: 1px;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  background: $text-muted-color;
+  animation: dot-anim 0.8s infinite cubic-bezier(0.5, 0, 0, 0.5);
+  transform: translate(0, 0);
+
+  &:nth-child(2) {
+    animation-delay: .2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: .4s;
+  }
+}

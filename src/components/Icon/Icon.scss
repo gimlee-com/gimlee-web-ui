@@ -1,0 +1,29 @@
+@mixin icon {
+  display: flex;
+}
+
+.xs {
+  @include icon;
+  font-size: 12px;
+}
+
+.sm {
+  @include icon;
+  font-size: 16px;
+}
+
+.md {
+  @include icon;
+  font-size: 24px;
+}
+
+.lg {
+  @include icon;
+  font-size: 32px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 0;
+  left: auto;
+}

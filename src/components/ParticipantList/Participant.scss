@@ -1,0 +1,29 @@
+@import "../../styles/default/variables";
+
+.link {
+  display: flex;
+  align-content: center;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.image {
+  width: 24px;
+  height: 24px;
+  border-radius: $border-rounded-border-radius;
+  background: $global-muted-background;
+}
+
+.user-display-name {
+  flex: 1;
+  margin-left: $margin-small-margin;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.activity-indicator {
+  margin-right: $global-small-margin;
+}

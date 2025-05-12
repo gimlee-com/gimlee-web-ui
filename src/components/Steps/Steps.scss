@@ -1,0 +1,26 @@
+@import "~gimlee-ui-styles/variables";
+
+.active {
+  > a {
+    color: $tab-item-active-color;
+    border-color: $tab-item-active-border;
+  }
+}
+
+.skipped {
+  > a {
+    color: $text-warning-color;
+  }
+}
+
+.invalid {
+  > a {
+    color: $text-danger-color;
+  }
+}
+
+.valid {
+  > a {
+    color: $text-success-color;
+  }
+}
