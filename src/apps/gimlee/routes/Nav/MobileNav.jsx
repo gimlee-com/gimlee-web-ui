@@ -103,7 +103,7 @@ function renderNavbarRight(props) {
             <PaddedContainer>
               <DropdownNav centered>
                 <NavItem>
-                  {t('dontYouHaveAccountYet')}
+                  {t('noAccountYet')}
                   <RouterButton to="/register" type={TYPE_LINK}>
                     {t('createAccount')}
                   </RouterButton>

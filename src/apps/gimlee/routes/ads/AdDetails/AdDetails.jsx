@@ -12,7 +12,9 @@ import { Breadcrumb, Breadcrumbs } from 'gimlee-ui-components/Breadcrumbs';
 import { RouterButton, TYPE_LINK } from 'gimlee-ui-components/Button';
 import { NavbarActionItem, NavbarItem } from 'gimlee-ui-components/Navbar';
 import { Grid, GridItem } from 'gimlee-ui-components/Grid';
-import Icon, { icons } from 'gimlee-ui-components/Icon';
+import Icon from 'gimlee-ui-components/Icon';
+import { BACK } from 'gimlee-ui-components/Icon/icons';
+import MediaGallery from 'gimlee-ui-components/MediaGallery';
 
 import { fetchAdDetails, updateCurrentPhoto } from './store/adDetails';
 import { adDetailsPropTypes } from './model/adDetails';
@@ -86,11 +88,6 @@ class AdDetails extends PureComponent {
     this.props.clearCustomNavRenderers();
   }
 
-  handleThumbnailClick(photoPath) {
-    // photoPath here is the original backend path, e.g., /2024/01/image.jpg
-    this.props.updateCurrentPhoto(photoPath);
-  }
-
   goBack() {
     this.props.history.goBack();
   }
@@ -114,7 +111,7 @@ class AdDetails extends PureComponent {
 
     const goBackButton = (
       <NavbarActionItem clickAction={this.goBack} className={styles.goBackButton}>
-        <Icon icon={icons.BACK} />{` ${t('app:common:goBack', 'Go Back')}`}
+        <Icon icon={BACK} />{` ${t('app:common:goBack', 'Go Back')}`}
       </NavbarActionItem>
     );
 
@@ -156,7 +153,7 @@ class AdDetails extends PureComponent {
   }
 
   render() {
-    const { t, data, currentPhoto, fetchStatus, i18n } = this.props;
+    const { t, data, fetchStatus, i18n } = this.props;
 
     if (fetchStatus.fetching) {
       return (<PageContent>
@@ -192,19 +189,18 @@ class AdDetails extends PureComponent {
       price,
       currency,
       mediaPaths = [],
-      mainPhotoPath,
     } = data;
-
-    // This stores the *original* backend path (e.g., /2024/01/image.jpg)
-    // It's used for logic (which photo is active) and as a base for getMediaUrl
-    const photoToDisplayRaw = currentPhoto || mainPhotoPath ||
-        (mediaPaths.length > 0 ? mediaPaths[0] : null);
 
     const reader = new commonmark.Parser();
     const writer = new commonmark.HtmlRenderer();
     const htmlDescription = description ? writer.render(reader.parse(description)) : '';
 
-    const galleryImages = mediaPaths || []; // These are also raw backend paths
+    const galleryImages = mediaPaths.map(path => ({
+      path: getMediaUrl(path, 'md'),
+      thumbPath: getMediaUrl(path, 'xs'),
+      fullPath: getMediaUrl(path, 'full'),
+      alt: title || t('app:adDetails:imageAlt', 'Ad image'),
+    }));
 
     return (
       <PageContent>
@@ -212,56 +208,26 @@ class AdDetails extends PureComponent {
           <Grid className="uk-grid-large" data-uk-grid>
             {/* Left Column: Image Gallery and Description */}
             <GridItem className="uk-width-1-1 uk-width-2-3@m">
-              {photoToDisplayRaw && (
-                <div className={classNames(styles.mainPhotoContainer, 'uk-margin-bottom')}>
-                  <img
-                    src={getMediaUrl(photoToDisplayRaw, 'md')}
-                    alt={title || t('app:adDetails:mainImageAlt', 'Ad image')}
-                    className={styles.mainPhoto}
-                  />
-                </div>
-                )}
-
-              {galleryImages.length > 1 && (
-                <div className={classNames(
-                        styles.thumbnailGallery,
-                        'uk-thumbnav uk-flex uk-flex-center uk-margin-bottom',
-                    )}
-                >
-                  {galleryImages.map(rawPath => (
-                    <a
-                      role="button"
-                      tabIndex="0"
-                      key={rawPath}
-                      onClick={() => this.handleThumbnailClick(rawPath)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          this.handleThumbnailClick(rawPath);
-                        }
-                      }}
-                      className={styles.thumbnailLink}
-                    >
-                      <img
-                        src={getMediaUrl(rawPath, 'xs')}
-                        alt={t('app:adDetails:thumbnailAlt', 'Image thumbnail')}
-                        className={classNames(
-                                    styles.thumbnail,
-                                    // Compare raw paths for active state
-                                    { [styles.activeThumbnail]: rawPath === photoToDisplayRaw },
-                                )}
-                      />
-                    </a>
-                      ))}
-                </div>
-                )}
+              {galleryImages.length > 0 && (
+                <MediaGallery
+                  images={galleryImages}
+                  title={title}
+                  onImageChange={(imagePath) => {
+                    const pathMatch = imagePath.match(/\/api\/media\?p=(?:\/thumbs-\w+)?(.+)/);
+                    if (pathMatch && pathMatch[1]) {
+                      this.props.updateCurrentPhoto(pathMatch[1]);
+                    }
+                  }}
+                  className="uk-margin-bottom"
+                />
+              )}
 
               {description && (
                 <div className={classNames(styles.descriptionSection, 'uk-card uk-card-default uk-card-body')}>
                   <h3 className="uk-card-title">{t('app:adDetails:description', 'Description')}</h3>
                   <div dangerouslySetInnerHTML={{ __html: htmlDescription }} />
                 </div>
-                )}
+              )}
             </GridItem>
 
             {/* Right Column: Price, Location Details */}
@@ -295,8 +261,8 @@ class AdDetails extends PureComponent {
                     <li>{location.city.country}</li>
                   </ul>
                   {location.point && location.point.length === 2 && (
-                  <a href={`https://www.google.com/maps?q=${location.point[0]},${location.point[1]}`} target="_blank" rel="noopener noreferrer" className="uk-button uk-button-text uk-margin-top">
-                    {t('app:adDetails:viewOnMap', 'View on Map')} <Icon icon={icons.EXTERNAL_LINK} className="uk-margin-small-left" />
+                  <a href={`https://www.google.com/maps?q=${location.point[1]},${location.point[0]}`} target="_blank" rel="noopener noreferrer" className="uk-button uk-button-text uk-margin-top">
+                    {t('app:adDetails:viewOnMap', 'View on Map')}
                   </a>
                       )}
                 </div>
@@ -350,7 +316,7 @@ AdDetails.defaultProps = {
 function mapStateToProps(state) {
   return {
     data: state.adDetails.data,
-    currentPhoto: state.adDetails.currentPhoto, // This is the raw backend path
+    currentPhoto: state.adDetails.currentPhoto,
     fetchStatus: state.adDetails.fetchStatus,
   };
 }

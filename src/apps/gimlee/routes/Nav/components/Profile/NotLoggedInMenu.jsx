@@ -32,7 +32,7 @@ const NotLoggedInMenu = ({ t }) => (
         <Div className="uk-padding">
           <DropdownNav centered>
             <NavItem className="uk-flex uk-flex-column uk-flex-middle">
-              {t('dontYouHaveAccountYet')}
+              {t('noAccountYet')}
               <RouterButton to="/register" type={TYPE_LINK}>
                 {t('createAccount')}
               </RouterButton>

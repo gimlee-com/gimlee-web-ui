@@ -52,7 +52,7 @@ const Login = ({ isUserLoggedInAlready, requiresVerification, resumePath, t }) =
               </Grid>
               <Grid className="uk-flex-right">
                 <GridItem>
-                  {t('dontYouHaveAccountYet')}&nbsp;
+                  {t('noAccountYet')}&nbsp;
                   <RouterButton to="/register" type={TYPE_LINK}>
                     {t('createAccount')}
                   </RouterButton>

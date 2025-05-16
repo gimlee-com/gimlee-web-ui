@@ -11,7 +11,7 @@ export default {
     logout: 'Wyloguj',
     registerFreeNow: 'Załóż darmowe konto',
     notLoggedIn: 'Niezalogowany',
-    dontYouHaveAccountYet: 'Nie masz jeszcze konta?',
+    noAccountYet: 'Nie masz jeszcze konta?',
     createAccount: 'Zarejestruj się',
     events: 'Wydarzenia',
     ok: 'OK',

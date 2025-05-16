@@ -1,0 +1,129 @@
+.media-gallery {
+  &__main-image {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    
+    &-link {
+      display: block;
+      text-align: center;
+      width: 100%;
+      cursor: zoom-in;
+      
+      &:hover .media-gallery__zoom-indicator {
+        opacity: 1;
+      }
+    }
+    
+    &-img {
+      max-width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+  }
+  
+  &__zoom-indicator {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &__thumbnails {
+    margin-top: 15px;
+    
+    .uk-grid {
+      margin-left: -5px;
+    }
+  }
+  
+  &__thumbnail-item {
+    padding-left: 5px;
+    width: 80px;
+    margin-bottom: 5px;
+  }
+  
+  &__thumbnail-link {
+    display: block;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+    cursor: pointer;
+    
+    &--active {
+      border-color: #1e87f0;
+    }
+    
+    &:hover {
+      border-color: rgba(30, 135, 240, 0.5);
+    }
+  }
+  
+  &__thumbnail-img {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+  }
+}
+
+// Modal/lightbox styling
+.uk-modal-dialog-lightbox {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: transparent;
+  box-shadow: none;
+  
+  .uk-modal-body {
+    background-color: transparent;
+  }
+}
+
+.uk-lightbox {
+  background: rgba(0, 0, 0, 0.9);
+  
+  &-image {
+    max-height: 90vh;
+    max-width: 90vw;
+  }
+  
+  &-item {
+    height: 90vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .media-gallery {
+    &__main-image {
+      height: 300px;
+      
+      &-img {
+        max-height: 300px;
+      }
+    }
+    
+    &__thumbnail-item {
+      width: 60px;
+    }
+    
+    &__thumbnail-img {
+      height: 45px;
+    }
+  }
+}

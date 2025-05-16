@@ -59,17 +59,16 @@ class Modal extends Component {
               this.modalDOMNode.removeEventListener('beforehide', this.handleModalHide);
             }
             this.modalDOMNode = ref;
-            this.modalRef = UIkit.modal(ref);
+            this.modalRef = UIkit.modal(ref, {
+              'esc-close': this.props.closeOnESCPressed,
+              'bg-close': this.props.closeOnBackgroundClicked,
+              stack: this.props.stackModals,
+            });
             this.props.modalRef(this.modalRef);
             ref.addEventListener('beforehide', this.handleModalHide);
           }
         }}
         className={classNames(this.props.className, { 'uk-modal-full': this.props.full })}
-        uk-modal={`
-          esc-close: ${this.props.closeOnESCPressed};
-          bg-close: ${this.props.closeOnBackgroundClicked};
-          stack: ${this.props.stackModals}
-        `}
         {...this.props.passthrough()}
       >
         {this.props.children}
