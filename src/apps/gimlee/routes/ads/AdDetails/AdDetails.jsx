@@ -196,7 +196,7 @@ class AdDetails extends PureComponent {
     const htmlDescription = description ? writer.render(reader.parse(description)) : '';
 
     const galleryImages = mediaPaths.map(path => ({
-      path: getMediaUrl(path, 'md'),
+      path: getMediaUrl(path, 'full'),
       thumbPath: getMediaUrl(path, 'xs'),
       fullPath: getMediaUrl(path, 'full'),
       alt: title || t('app:adDetails:imageAlt', 'Ad image'),
