@@ -10,13 +10,22 @@ import { RouterButton } from 'gimlee-ui-components/Button';
 import { Card, CardBody, CardFooter } from 'gimlee-ui-components/Card';
 import Section from 'gimlee-ui-components/Section/Section';
 import { fetchStatusPropTypes } from 'gimlee-ui-model/api';
+import Pagination from 'gimlee-ui-components/Pagination'; // Import the Pagination component
 import { adDataPropTypes } from './model';
 import { fetchAds, setSearch } from './store/adSearch';
-import { fromQueryString, searchPropTypes } from './model/search';
+import { fromQueryString, searchPropTypes, toQueryString } from './model/search';
 import FiltersContainer from './containers/FiltersContainer';
 import styles from './AdSearch.scss';
 
 class AdSearch extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.handlePageChange = this.handlePageChange.bind(this);
+    this.handlePreviousPage = this.handlePreviousPage.bind(this);
+    this.handleNextPage = this.handleNextPage.bind(this);
+  }
+
   componentDidMount() {
     fromQueryString(this.props.location.search).then((search) => {
       this.props.setSearch(search);
@@ -34,8 +43,29 @@ class AdSearch extends PureComponent {
     }
   }
 
+  handlePageChange(page) {
+    const newSearch = { ...this.props.search, page: page - 1 };
+    this.props.history.push(`/ads?${toQueryString(newSearch)}`);
+  }
+
+  handlePreviousPage() {
+    const newSearch = { ...this.props.search, page: this.props.search.page - 1 };
+    this.props.history.push(`/ads?${toQueryString(newSearch)}`);
+  }
+
+  handleNextPage() {
+    const newSearch = { ...this.props.search, page: this.props.search.page + 1 };
+    this.props.history.push(`/ads?${toQueryString(newSearch)}`);
+  }
+
   render() {
     const { data, fetchStatus } = this.props;
+    const { totalPages, number } = data;
+    const currentPage = number + 1;
+
+    const paginationItems = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+
     return (
       <PageContent>
         <Section className="uk-padding">
@@ -56,7 +86,7 @@ class AdSearch extends PureComponent {
                   <RouterButton
                     to={`/ad/${ad.id}`}
                     className={
-                      `${styles.cardButton} uk-box-shadow-medium uk-box-shadow-hover-large 
+                      `${styles.cardButton} uk-box-shadow-medium uk-box-shadow-hover-large
                        uk-padding-remove uk-border-rounded uk-text-left`
                     }
                   >
@@ -89,6 +119,18 @@ class AdSearch extends PureComponent {
                 </GridItem>
               ))}
             </Grid>
+            {totalPages > 1 && (
+              <Pagination
+                items={paginationItems}
+                activePage={currentPage}
+                onPageChange={this.handlePageChange}
+                hasNext={!data.last}
+                hasPrevious={!data.first}
+                onNext={this.handleNextPage}
+                onPrevious={this.handlePreviousPage}
+                align="center"
+              />
+            )}
           </Section>
         </Container>
       </PageContent>
@@ -105,6 +147,9 @@ AdSearch.propTypes = {
   location: PropTypes.shape({
     search: PropTypes.string,
   }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 function mapStateToProps(state) {
@@ -117,8 +162,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchAds: search => dispatch(fetchAds(search)),
-    setSearch: search => dispatch(setSearch(search)),
+    fetchAds(search) { dispatch(fetchAds(search)); },
+    setSearch(search) { dispatch(setSearch(search)); },
   };
 }
 

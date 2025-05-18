@@ -29,7 +29,6 @@
 }
 
 .thumbnail-gallery {
-  // Uses uk-thumbnav, so might not need much if that's sufficient
   .thumbnail-link {
     margin: 0 5px;
     cursor: pointer;
@@ -39,8 +38,17 @@
       object-fit: cover;
       border: 2px solid transparent;
       &.active-thumbnail {
-        border-color: #1e87f0; // Example active border color (UIKit primary)
+        border-color: $form-focus-border;
       }
     }
+  }
+}
+
+.price-section {
+  &.arrr {
+    background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20id%3D%22Layer_1%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%20111.7%20117.8%22%20style%3D%22enable-background%3Anew%200%200%20111.7%20117.8%3B%22%20xml%3Aspace%3D%22preserve%22%3E%20%3Cstyle%20type%3D%22text%2Fcss%22%3E%20.st0%7Bfill%3A%23BB9645%3B%7D%20.st1%7Bfill%3A%230A0B0B%3B%7D%20.st2%7Bfill%3A%23FFFFFF%3B%7D%20.st3%7Bfill%3A%23231F20%3B%7D%20.st4%7Bfill%3Aurl(%23SVGID_1_)%3B%7D%20.st5%7Bfill%3Aurl(%23SVGID_2_)%3B%7D%20.st6%7Bfill%3Aurl(%23SVGID_3_)%3B%7D%20.st7%7Bfill%3Aurl(%23SVGID_4_)%3B%7D%20.st8%7Bfill%3Aurl(%23SVGID_5_)%3B%7D%20.st9%7Bfill%3Aurl(%23SVGID_6_)%3B%7D%20.st10%7Bfill%3Aurl(%23SVGID_7_)%3B%7D%20.st11%7Bfill%3Aurl(%23SVGID_8_)%3B%7D%20.st12%7Bfill%3Aurl(%23SVGID_9_)%3B%7D%20.st13%7Bfill%3Aurl(%23SVGID_10_)%3B%7D%20.st14%7Bfill%3Aurl(%23SVGID_11_)%3B%7D%20.st15%7Bfill%3A%231B1B1B%3B%7D%20.st16%7Bfill%3Aurl(%23SVGID_12_)%3B%7D%20.st17%7Bfill%3Aurl(%23SVGID_13_)%3B%7D%20.st18%7Bfill%3Aurl(%23SVGID_14_)%3B%7D%20.st19%7Bfill%3Aurl(%23SVGID_15_)%3B%7D%20.st20%7Bfill%3Aurl(%23SVGID_16_)%3B%7D%20.st21%7Bfill%3Aurl(%23SVGID_17_)%3B%7D%20.st22%7Bfill%3Aurl(%23SVGID_18_)%3B%7D%20.st23%7Bfill%3Aurl(%23SVGID_19_)%3B%7D%20.st24%7Bfill%3Aurl(%23SVGID_20_)%3B%7D%20.st25%7Bfill%3Aurl(%23SVGID_21_)%3B%7D%20.st26%7Bfill%3Aurl(%23SVGID_22_)%3B%7D%20%3C%2Fstyle%3E%20%3Cg%3E%20%3Cpath%20class%3D%22st0%22%20d%3D%22M23.8%2C29.8c0-4%2C3.7-7.3%2C8.3-7.3h40.8l29.6-14.9C98%2C3.1%2C91.7%2C0.3%2C84.8%2C0.3H27C12.9%2C0.3%2C1.6%2C11.6%2C1.6%2C25.5v34%20L23.8%2C48V29.8z%22%2F%3E%20%3Cpath%20class%3D%22st0%22%20d%3D%22M110%2C24.2L87.8%2C35.4v22.2c0%2C4.1-3.8%2C7.4-8.4%2C7.4H30.6l-29%2C15.1v19v10.8v7.6h8.8l7.6-0.2c3.3-0.8%2C6-3.8%2C6-7.4%20V88.4h60.9c13.9%2C0%2C25.2-11.3%2C25.2-25.2V25.5C110%2C25.1%2C110%2C24.7%2C110%2C24.2z%22%2F%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E");
+    background-position: top $margin-small-margin right $margin-small-margin;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
   }
 }

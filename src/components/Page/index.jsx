@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withPropsPassthrough from '../_HOC/withPropsPassthrough';
 
-// TODO: improve scrolling to top on route change
 const Page = props => (
   <div ref={props.onRef} {...props.passthrough()}>{props.children}</div>
 );

@@ -9,7 +9,7 @@ import commonmark from 'commonmark';
 import Container from 'gimlee-ui-components/Container';
 import PageContent from 'gimlee-ui-components/PageContent';
 import { Breadcrumb, Breadcrumbs } from 'gimlee-ui-components/Breadcrumbs';
-import { RouterButton, TYPE_LINK } from 'gimlee-ui-components/Button';
+import { ActionButton, RouterButton, TYPE_LINK } from 'gimlee-ui-components/Button';
 import { NavbarActionItem, NavbarItem } from 'gimlee-ui-components/Navbar';
 import { Grid, GridItem } from 'gimlee-ui-components/Grid';
 import Icon from 'gimlee-ui-components/Icon';
@@ -233,7 +233,12 @@ class AdDetails extends PureComponent {
             {/* Right Column: Price, Location Details */}
             <GridItem className="uk-width-1-1 uk-width-1-3@m">
               {typeof price === 'number' && currency && (
-                <div className={classNames(styles.priceSection, 'uk-card uk-card-default uk-card-body uk-margin-bottom')}>
+                <div className={classNames(
+                    styles.priceSection,
+                    { [styles.arrr]: currency === 'ARRR' },
+                    'uk-card uk-card-default uk-card-body uk-margin-bottom',
+                )}
+                >
                   <h3 className="uk-card-title">{t('app:adDetails:price', 'Price')}</h3>
                   <p className={classNames(styles.priceValue, 'uk-text-large uk-text-bold')}>
                     {(() => {
@@ -241,13 +246,33 @@ class AdDetails extends PureComponent {
                         return new Intl.NumberFormat(i18n.language || 'en', { style: 'currency', currency }).format(price);
                       } catch (e) {
                         if (e instanceof RangeError) {
-                          console.error(`Invalid currency code "${currency}" for price ${price}. Displaying raw values.`, e);
+                          console.info(
+                            `Invalid currency code "${currency}" for price ${price}. Displaying raw values.`,
+                            e,
+                          );
                           return `${price} ${currency}`;
                         }
                         throw e;
                       }
                     })()}
                   </p>
+                  <div className="uk-margin-top uk-button-group">
+                    <ActionButton
+                      type="primary"
+                      size="small"
+                      className="uk-margin-right"
+                      action={() => console.log('Buy Now button clicked')}
+                    >
+                      {t('app:adDetails:buyNow', 'Buy Now')}
+                    </ActionButton>
+                    <ActionButton
+                      type="secondary"
+                      size="small"
+                      action={() => console.log('Add to Cart button clicked')}
+                    >
+                      {t('app:adDetails:addToCart', 'Add to Cart')}
+                    </ActionButton>
+                  </div>
                 </div>
                 )}
 
