@@ -85,13 +85,17 @@ class Home extends PureComponent {
                         <div className="uk-cover-container">
                           { /* invisible canvas makes the perfect square before image load */ }
                           <canvas width="500" height="500" />
-                          <Image
-                            uk-cover=""
-                            srcset={
-                                `/api/media?p=/thumbs-sm${ad.mainPhotoPath}`
-                              }
-                            alt="img"
-                          />
+                          {ad.mainPhotoPath ? (
+                            <Image
+                              uk-cover=""
+                              srcset={`/api/media?p=/thumbs-sm${ad.mainPhotoPath}`}
+                              alt="img"
+                            />
+                          ) : (
+                            <div className="uk-cover">
+                              <span>No Image</span> {/* Placeholder text */}
+                            </div>
+                          )}
                         </div>
                       </CardBody>
 
