@@ -187,7 +187,6 @@ class AdDetails extends PureComponent {
       description,
       location,
       price,
-      currency,
       mediaPaths = [],
     } = data;
 
@@ -201,6 +200,9 @@ class AdDetails extends PureComponent {
       fullPath: getMediaUrl(path, 'full'),
       alt: title || t('app:adDetails:imageAlt', 'Ad image'),
     }));
+
+    const amount = price && typeof price.amount === 'number' ? price.amount : null;
+    const currency = price && price.currency ? price.currency : null;
 
     return (
       <PageContent>
@@ -220,37 +222,37 @@ class AdDetails extends PureComponent {
                   }}
                   className="uk-margin-bottom"
                 />
-              )}
+                )}
 
               {description && (
                 <div className={classNames(styles.descriptionSection, 'uk-card uk-card-default uk-card-body')}>
                   <h3 className="uk-card-title">{t('app:adDetails:description', 'Description')}</h3>
                   <div dangerouslySetInnerHTML={{ __html: htmlDescription }} />
                 </div>
-              )}
+                )}
             </GridItem>
 
             {/* Right Column: Price, Location Details */}
             <GridItem className="uk-width-1-1 uk-width-1-3@m">
-              {typeof price === 'number' && currency && (
+              {amount !== null && currency && (
                 <div className={classNames(
-                    styles.priceSection,
-                    { [styles.arrr]: currency === 'ARRR' },
-                    'uk-card uk-card-default uk-card-body uk-margin-bottom',
-                )}
+                        styles.priceSection,
+                        { [styles.arrr]: currency === 'ARRR' },
+                        'uk-card uk-card-default uk-card-body uk-margin-bottom',
+                    )}
                 >
                   <h3 className="uk-card-title">{t('app:adDetails:price', 'Price')}</h3>
                   <p className={classNames(styles.priceValue, 'uk-text-large uk-text-bold')}>
                     {(() => {
                       try {
-                        return new Intl.NumberFormat(i18n.language || 'en', { style: 'currency', currency }).format(price);
+                        return new Intl.NumberFormat(i18n.language || 'en', { style: 'currency', currency }).format(amount);
                       } catch (e) {
                         if (e instanceof RangeError) {
                           console.info(
-                            `Invalid currency code "${currency}" for price ${price}. Displaying raw values.`,
-                            e,
-                          );
-                          return `${price} ${currency}`;
+                                  `Invalid currency code "${currency}" for price ${amount}. Displaying raw values.`,
+                                  e,
+                              );
+                          return `${amount} ${currency}`;
                         }
                         throw e;
                       }

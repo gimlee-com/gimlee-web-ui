@@ -19,8 +19,10 @@ export const adDetailsPropTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   location: PropTypes.shape(locationWithCityDetailsPropTypes),
-  price: PropTypes.number,
-  currency: PropTypes.string,
+  price: PropTypes.shape({
+    amount: PropTypes.number,
+    currency: PropTypes.string,
+  }),
   mediaPaths: PropTypes.arrayOf(PropTypes.string),
   mainPhotoPath: PropTypes.string,
 };
@@ -40,8 +42,10 @@ export default Object.freeze({
     },
     point: [],
   },
-  price: null,
-  currency: null,
+  price: {
+    amount: null,
+    currency: null,
+  },
   mediaPaths: [],
   mainPhotoPath: null,
 });
